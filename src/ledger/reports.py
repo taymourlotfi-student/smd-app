@@ -21,16 +21,13 @@ def totals_by(
 
 def is_spending(t: Transaction) -> bool:
     """Money that left the accounts: negative, and not a transfer between them."""
-    # TODO 1: return True when the amount is negative and the category is not
-    #         TRANSFER, and False otherwise.
+
     return t.amount < 0 and t.category != TRANSFER
 
 
 def balances(transactions: Iterable[Transaction]) -> dict[str, Decimal]:
     """The balance of each account, by account name, sorted by name."""
-    # TODO 2: add up the amounts of each account with totals_by, and return the
-    #         result sorted by account name. spending_by_category, below, shows
-    #         how to call totals_by with a key.
+
     totals = totals_by(transactions, key=lambda t: t.account)
     return dict(sorted(totals.items()))
 
@@ -44,7 +41,6 @@ def spending_by_category(transactions: Iterable[Transaction]) -> dict[str, Decim
 
 def net_by_month(transactions: Iterable[Transaction]) -> dict[str, Decimal]:
     """Income minus spending of each month (`2026-01`...), sorted by month."""
-    # TODO 3: add up all the amounts of each month, transfers included.
-    #         t.date.strftime("%Y-%m") gives the month of a transaction as text.
+
     totals = totals_by(transactions, key=lambda t: t.date.strftime("%Y-%m"))
     return dict(sorted(totals.items()))
