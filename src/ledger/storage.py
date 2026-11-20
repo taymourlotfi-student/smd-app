@@ -21,5 +21,3 @@ def read_csv(path: Path) -> list[Transaction]:
             )
             for row in csv.DictReader(f)
         ]
-
-    
